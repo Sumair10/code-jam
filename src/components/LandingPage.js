@@ -1,4 +1,4 @@
-import { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -9,7 +9,6 @@ import MediaCard from "./Items";
 import DrawerAppBar from "../Header/Header";
 import { NavLink, useNavigate } from "react-router-dom";
 
-
 function LandingPage() {
   const navigate = useNavigate();
 
@@ -19,7 +18,6 @@ function LandingPage() {
     const loggedInUser = JSON.parse(localStorage.getItem("user"));
     setUser(loggedInUser);
     console.log("user", loggedInUser);
-
   }, []);
 
   return (
@@ -41,10 +39,33 @@ function LandingPage() {
       >
         <DrawerAppBar />
 
+        <Typography
+          sx={{
+            color: "white",
+            ml: 10,
+            mt: 40,
+            cursor: "pointer",
+            fontSize: 70,
+            fontWeight: "bolder",
+            textTransform: "uppercase",
+          }}
+        >
+          ITALIAN SPECIALITIES
+        </Typography>
+        <Typography
+          onClick={() => navigate("/favourite", { state: { user } })}
+          sx={{
+            color: "white",
+            ml: 10,
+            cursor: "pointer",
+            fontSize: 50,
+            fontWeight: "bolder",
+            color :'#ff6838'
+          }}
         
-
-        <Typography onClick={()=> navigate('/favourite', { state: { user } } )} sx={{color : 'white', ml:10, mt : 30 , cursor :'pointer' , fontSize :50, fontWeight : 'bolder' }}>Favourite Products</Typography>
-    
+        >
+          Favourite Products
+        </Typography>
       </Grid>
 
       {/* images */}
