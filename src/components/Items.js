@@ -88,7 +88,10 @@ export default function MediaCard() {
             items?.products.map((product) => (
               <Box
                 sx={{
-                  m: 8,
+                  m: {
+                    md : 8,
+                    xs:2
+                  },
                   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
                   p: 2,
                   borderRadius: 10,
@@ -107,7 +110,7 @@ export default function MediaCard() {
                   <Box
                     component="img"
                     sx={{
-                      width: { md: 150, xs: 70 },
+                      width: { md: 150, xs: 150 },
                     }}
                     alt="The house from the offer."
                     src={

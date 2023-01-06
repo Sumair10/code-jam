@@ -29,7 +29,10 @@ function LandingPage() {
         md={6}
         sx={{
           // width :'100vh',
-          height: "100vh",
+          height: {
+            md : "100vh",
+            xs: "50vh"
+          },
           backgroundImage: `url(${dashboard})`,
           backgroundRepeat: "no-repeat",
           //   backgroundColor:'red',
@@ -42,10 +45,19 @@ function LandingPage() {
         <Typography
           sx={{
             color: "white",
-            ml: 10,
-            mt: 40,
+            ml: {
+                md : 10,
+                 xs: 2
+            },
+            mt: {
+                md : 40 ,
+                xs: 10
+            },
             cursor: "pointer",
-            fontSize: 70,
+            fontSize: {
+                md : 70 ,
+                xs:30
+            },
             fontWeight: "bolder",
             textTransform: "uppercase",
           }}
@@ -56,9 +68,15 @@ function LandingPage() {
           onClick={() => navigate("/favourite", { state: { user } })}
           sx={{
             color: "white",
-            ml: 10,
+            ml: {
+                md : 10,
+                 xs: 2
+            },
             cursor: "pointer",
-            fontSize: 50,
+            fontSize: {
+                md : 50 ,
+                xs:20
+            },
             fontWeight: "bolder",
             color :'#ff6838'
           }}
