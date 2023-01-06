@@ -68,12 +68,21 @@ export default function Favourite() {
         >
           {favourite &&
             favourite.map((product) => (
-              <Box
+                <Box
                 sx={{
-                  m: 8,
+                  m: {
+                    md : 8,
+                    xs:2
+                  },
                   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
                   p: 2,
                   borderRadius: 10,
+                  transition:'0.5s',
+
+                  "&:hover":{
+                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+                    transition:'0.5s'
+                  },
                 }}
               >
                 <Grid
@@ -89,7 +98,7 @@ export default function Favourite() {
                   <Box
                     component="img"
                     sx={{
-                      width: { md: 150, xs: 70 },
+                      width: { md: 150, xs: 150 },
                     }}
                     alt="The house from the offer."
                     src={
@@ -149,17 +158,25 @@ export default function Favourite() {
                     </Grid>
                     <Grid>
                       <Typography
-                        // onClick={() => Product(product)}
+                        // onClick={() => addProduct(product)}
                         sx={{
-                          border: "2px solid black",
+                          border: "2px solid #ff6838",
                           borderRadius: 10,
                           fontSize: 12,
                           p: 1,
                           fontWeight: "bold",
                           cursor: "pointer",
+                  transition:'0.3s',
+
+                          "&:hover":{
+                            backgroundColor: "#ff6838",
+                            color : 'white',
+                  transition:'0.3s',
+
+                          },
                         }}
                       >
-                        Remove from favourite
+                        Add to favourite
                       </Typography>
                     </Grid>
                   </Grid>

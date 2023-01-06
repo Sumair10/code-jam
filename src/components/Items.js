@@ -95,6 +95,12 @@ export default function MediaCard() {
                   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
                   p: 2,
                   borderRadius: 10,
+                  transition:'0.5s',
+
+                  "&:hover":{
+                    boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+                    transition:'0.5s'
+                  },
                 }}
               >
                 <Grid
@@ -178,6 +184,13 @@ export default function MediaCard() {
                           p: 1,
                           fontWeight: "bold",
                           cursor: "pointer",
+                  transition:'0.3s',
+                  "&:hover":{
+                            backgroundColor: "#ff6838",
+                            color : 'white',
+                  transition:'0.3s',
+
+                          },
                         }}
                       >
                         Add to favourite
