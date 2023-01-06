@@ -31,6 +31,9 @@ export default function SignIn() {
         const user = userCredential.user;
         navigate("/landingPage")
         console.log(user);
+      localStorage.setItem('user', JSON.stringify(user));
+
+
     })
     .catch((error) => {
         const errorCode = error.code;
