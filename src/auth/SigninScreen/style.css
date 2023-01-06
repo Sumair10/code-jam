@@ -1,0 +1,46 @@
+
+  
+  .leftSide h1 {
+    margin-bottom: 0%;
+  }
+  .leftSide p {
+    font-size: 12px;
+    color: rgb(99, 98, 98);
+  }
+  .leftSide h5 {
+    color: rgb(191, 191, 191);
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0%;
+    margin-bottom: -13px;
+    margin-top: 5px;
+  }
+  .leftSide button {
+    font-size: 12px;
+    height: 40px;
+    border-radius: 7px;
+  }
+  .leftSide button:hover {
+    background-color: #ee6535;
+  }
+  .leftSide .icon {
+    border: 1px solid rgb(41, 40, 40);
+    background-color: #141415;
+    padding: 16px 15px 9px 18px;
+    border-radius: 50%;
+    margin: 8px;
+  }
+  
+  .inputField {
+    background: #141415;
+    border-color: aliceblue;
+    border-radius: 5px;
+    color: rgb(179, 187, 245) !important;
+  }
+  .inputField:focus {
+    border: none;
+    display: none;
+  }
+
+  
+  
