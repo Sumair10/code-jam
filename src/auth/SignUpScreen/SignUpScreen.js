@@ -15,14 +15,19 @@ import "./style.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavLink, useNavigate } from "react-router-dom";
+import dashboard from "../../assets/i.jpg";
+import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import { useSnackbar } from 'notistack';
+
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 // const theme = createTheme();
 
 export default function SignUp() {
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-
+  
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -69,13 +74,17 @@ export default function SignUp() {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        enqueueSnackbar('signup successful', { variant: 'success' });  
+        
         navigate("/signin")
+
         // ...
     })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
+        enqueueSnackbar(errorMessage, { variant: 'error' });  
         // ..
     });
   };
@@ -90,70 +99,22 @@ export default function SignUp() {
     >
       <Grid
         item
-        // xs={1}
-        sm={false}
-        md={4}
-        lg={5.5}
+        xs={false}
+        sm={4}
+        md={6}
         sx={{
-          display: { sm: "none", md: "block" },
-          backgroundImage: "url(/Images/orange.webp)",
+          // width :'100vh',
+          height: "100vh",
+          backgroundImage: `url(${dashboard})`,
           backgroundRepeat: "no-repeat",
-          margin: 6,
-
+          //   backgroundColor:'red',
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundColor: "#ee6535",
         }}
       >
-        <Grid
-          sx={{
-            height: "80vh",
-            padding: 2,
-          }}
-          container
-          direction="column"
-          justifyContent="space-between"
-        >
-          <Grid>
-            {" "}
-            {/* <h1 className="leftHeading"> */}
-            <Typography
-              sx={{
-                color: "white",
-                fontWeight: "bolder",
-                fontSize: { lg: 25, md: 20, sm: 30, xs: 22 },
-                px: { lg: 8, md: 5, sm: 5, xs: 2 },
-                pt: 3,
-              }}
-            >
-              AI Driven Spread Trading{" "}
-              <Typography
-                // display="inline"
-                sx={{
-                  color: "white",
-                  fontWeight: "bolder",
-                  fontSize: { lg: 35, md: 25, sm: 30, xs: 30 },
-                }}
-              >
-                balancing profit with purpose spread trading reinvented
-              </Typography>
-            </Typography>
-            {/* </h1> */}
-          </Grid>
-          <Grid>
-            <Typography
-              sx={{
-                color: "white",
-                fontWeight: "bolder",
-                fontSize: { lg: 20, md: 15, sm: 30, xs: 15 },
-                px: { lg: 8, md: 5, sm: 5, xs: 2 },
-                pt: 3,
-              }}
-            >
-              Equities, Forex, Bonds, Indices, Commodities
-            </Typography>
-          </Grid>
-        </Grid>
+      
+
+      
       </Grid>
 
       <Grid
@@ -182,7 +143,7 @@ export default function SignUp() {
             container
             direction="column"
             justifyContent="space-between"
-            sx={{ height: "88vh" }}
+            sx={{ height: "60vh" }}
           >
             <Grid>
               {" "}
@@ -201,11 +162,11 @@ export default function SignUp() {
                   {/* <span style={{ marginRight: 10 }}>
                     <img src={logo} width="30px" height="30px" style={{ border : '5px solid #ff6838' , borderRadius: 3}}/>{" "}
                   </span> */}
-                  <h2> Traider</h2>
+                  <h1 style ={{marginBottom :50}}> Hungry</h1>
                 </Grid>
                 <h1>Create an account</h1>
                 <p style={{ marginBottom: 20 }}>
-                  Stocks, Forex, Indices, Bonds, Equities
+                  Enter your details below
                 </p>
                 <Grid>
                   <h5>Email address</h5>
@@ -385,7 +346,28 @@ export default function SignUp() {
                 justifyContent="center"
                 alignItems="center"
               >
-                <p>Copyright &copy; 2022 Traider. All Rights Reserved</p>
+                <p style={{ color: "rgb(209, 209, 209)" }}>
+                  Already have an account? &nbsp;
+                </p>
+
+                <Link
+                  to="/signin"
+                  style={{
+                    color: "#ee6535",
+                    fontSize: 13,
+                    textDecoration: "none",
+                  }}
+                >
+                  Sign In
+                </Link>
+              </Grid>
+              <Grid
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+              >
+                <p>Copyright &copy; 2022 Hungry. All Rights Reserved</p>
               </Grid>
             </Grid>
           </Grid>

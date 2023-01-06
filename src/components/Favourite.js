@@ -6,22 +6,23 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs ,deleteDoc  , doc} from "firebase/firestore";
 import { db } from "../firebase";
 import StarIcon from "@mui/icons-material/Star";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import { useSnackbar } from 'notistack';
+import DrawerAppBar from "../Header/Header";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
-export default function MediaCard() {
-  const [items, setItems] = useState();
-  const [user, setUser] = useState();
-  console.log(items);
-  const { enqueueSnackbar } = useSnackbar();
+export default function Favourite() {
 
+  const location = useLocation();
+  const user = location.state.user;
 
-  const [todos, setTodos] = useState([]);
+  const [favourite, setFavourite] = useState([]);
+
+  console.log('favourite' , favourite);
 
   const fetchPost = async () => {
     await getDocs(collection(db, "favourite")).then((querySnapshot) => {
@@ -30,53 +31,25 @@ export default function MediaCard() {
         ...doc.data(),
         id: doc.userId,
       }));
-      const unFavouriteData = newData.filter((data) => data.userId === user?.uid);
-      setTodos(newData);
-      console.log(todos, newData);
+      const favouriteData = newData.filter((data) => data.userId === user?.uid);
+      setFavourite(favouriteData);
+      console.log( favouriteData , newData);
     });
   };
 
-  const fetchData = async () => {
-    const response = await axios.get(
-      "https://api.spoonacular.com/food/products/search?query=Pizza&apiKey=be7f248ccd6249788f19b21eb632614d"
-    );
-    setItems(response.data);
-    console.log(items);
-  };
 
-  const addProduct = async (product) => {
-    // e.preventDefault();
 
-    console.log("item ", product);
-
-    try {
-      const docRef = await addDoc(collection(db, "favourite"), {
-        image: product.image,
-        title : product.title,
-        userId: user.uid,
-        productId : product.id
-      });
-      console.log("Document written with ID: ", docRef.id);
-      enqueueSnackbar('Add to favourite successful', { variant: 'success' });      
-    
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  };
-
-  //   }, [])
-
-  useEffect(() => {
-    fetchData();
-    const loggedInUser = JSON.parse(localStorage.getItem("user"));
-    setUser(loggedInUser);
-    console.log("user", loggedInUser);
+  useEffect(  () => {
+   
 
     fetchPost();
   }, []);
 
   return (
     <>
+        <DrawerAppBar />
+        
+
       <Box>
         <Grid
           container
@@ -84,8 +57,17 @@ export default function MediaCard() {
           justifyContent="center"
           alignItems="center"
         >
-          {items?.products &&
-            items?.products.map((product) => (
+
+      <Typography sx={{color : 'black', mt:3 , cursor :'pointer' , fontSize :50, fontWeight : 'bolder' }}>Favourite Products</Typography>
+        </Grid>
+        <Grid
+          container
+          flexDirection="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          {favourite &&
+            favourite.map((product) => (
               <Box
                 sx={{
                   m: 8,
@@ -167,9 +149,9 @@ export default function MediaCard() {
                     </Grid>
                     <Grid>
                       <Typography
-                        onClick={() => addProduct(product)}
+                        // onClick={() => Product(product)}
                         sx={{
-                          border: "2px solid #ff6838",
+                          border: "2px solid black",
                           borderRadius: 10,
                           fontSize: 12,
                           p: 1,
@@ -177,7 +159,7 @@ export default function MediaCard() {
                           cursor: "pointer",
                         }}
                       >
-                        Add to favourite
+                        Remove from favourite
                       </Typography>
                     </Grid>
                   </Grid>
@@ -190,28 +172,4 @@ export default function MediaCard() {
   );
 }
 
-{
-  /* <Card sx={{ maxWidth: 345 }}>
-<CardMedia
-      sx={{ height: 300 }}
-      // image={product.image}
-      // image={}
-      title="{grdu}een iguana"
-    />
-<CardContent>
-  <Typography gutterBottom variant="h5" component="div">
-    abc
-  </Typography>
-  <Typography variant="body2" color="text.secondary">
-    Lizards are a widespread group of squamate reptiles, with over
-    6,000 species, ranging across all continents except Antarctica
-  </Typography>
-</CardContent>
-<CardActions>
-  <Button size="small" onClick={fetchPost}>Share</Button>
-  <Button size="small" onClick={() => addProduct("pizza")}>
-    Add to favourite
-  </Button>
-</CardActions>
-</Card> */
-}
+
