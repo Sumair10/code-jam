@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
@@ -11,25 +11,23 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
-import './style.css'
+import "./style.css";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 // const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
-      password: data.get("password"),
-      confirmPassword: data.get("ConfirmPassword"),
-    });
-  };
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
   const [values, setValues] = React.useState({
-    amount: "",
+    email: "",
     password: "",
     confirmPassword: "",
     weight: "",
@@ -39,6 +37,8 @@ export default function SignUp() {
   });
 
   const handleChange = (prop) => (event) => {
+    console.log();
+    setPassword(event.target.value);
     setValues({ ...values, [prop]: event.target.value });
   };
 
@@ -52,6 +52,32 @@ export default function SignUp() {
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    console.log(email, password);
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    //   confirmPassword: data.get("ConfirmPassword"),
+    // });
+    await createUserWithEmailAndPassword(auth,  email, password)
+    .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        navigate("/signin")
+        // ...
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+    });
   };
 
   return (
@@ -196,22 +222,21 @@ export default function SignUp() {
                         borderColor: "rgb(39, 39, 39)",
                       },
                     },
-
                   }}
                   inputProps={{
-                    style: { color: "white", fontSize: 15 , height:30 },
+                    style: { color: "white", fontSize: 15, height: 30 },
                   }}
-
                   className="inputField"
                   margin="normal"
                   required
                   fullWidth
-                  
                   placeholder="Enter email address"
                   id="email"
                   size="small"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e?.target.value)}
                 />
                 <Grid>
                   <h5>Password</h5>
@@ -327,29 +352,30 @@ export default function SignUp() {
                   </p>
                   <p style={{ color: "#ee6535" }}>Terms of Use &nbsp;</p>
                 </Grid>
-                <Link
+                {/* <Link
                   to={"/signin"}
                   style={{
                     color: "#ee6535",
                     fontSize: 13,
                     textDecoration: "none",
                   }}
+                > */}
+                <Button
+                  onClick={handleSubmit}
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    backgroundColor: "#ff6838",
+                    textTransform: "none",
+                    fontWeight: "normal",
+                  }}
                 >
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{
-                      mt: 3,
-                      mb: 2,
-                      backgroundColor: "#ff6838",
-                      textTransform: "none",
-                      fontWeight: "normal",
-                    }}
-                  >
-                    Sign up
-                  </Button>
-                </Link>
+                  Sign up
+                </Button>
+                {/* </Link> */}
               </Box>
             </Grid>
             <Grid>
