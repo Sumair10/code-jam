@@ -154,7 +154,7 @@ export default function MediaCard() {
                     }}
                   >
                     The App bar displays information and actions relating to the
-                    {/* current screen. */}
+                    current screen.
                   </Typography>
                   <Grid
                     container
