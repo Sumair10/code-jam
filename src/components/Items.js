@@ -159,7 +159,7 @@ export default function MediaCard() {
                   <Grid
                     container
                     flexDirection="row"
-                    // justifyContent="space-between"
+                    justifyContent="space-between"
                     alignItems="center"
                   >
                     <Grid>
