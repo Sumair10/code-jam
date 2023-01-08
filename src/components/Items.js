@@ -183,7 +183,7 @@ export default function MediaCard() {
                           // fontSize: 12,
                           p: 1,
                           // fontWeight: "bold",
-                          cursor: "pointer",
+                          // cursor: "pointer",
                   transition:'0.3s',
                   "&:hover":{
                             backgroundColor: "#ff6838",
