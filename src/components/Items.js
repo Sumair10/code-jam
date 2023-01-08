@@ -180,7 +180,7 @@ export default function MediaCard() {
                         sx={{
                           border: "2px solid #ff6838",
                           // borderRadius: 10,
-                          fontSize: 12,
+                          // fontSize: 12,
                           p: 1,
                           fontWeight: "bold",
                           cursor: "pointer",
