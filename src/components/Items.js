@@ -182,7 +182,7 @@ export default function MediaCard() {
                           // borderRadius: 10,
                           // fontSize: 12,
                           p: 1,
-                          // fontWeight: "bold",
+                          fontWeight: "bold",
                           cursor: "pointer",
                   transition:'0.3s',
                   "&:hover":{
