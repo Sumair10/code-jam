@@ -176,7 +176,7 @@ export default function MediaCard() {
                     </Grid>
                     <Grid>
                       <Typography
-                        // onClick={() => addProduct(product)}
+                        onClick={() => addProduct(product)}
                         sx={{
                           border: "2px solid #ff6838",
                           borderRadius: 10,
