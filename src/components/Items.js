@@ -179,7 +179,7 @@ export default function MediaCard() {
                         // onClick={() => addProduct(product)}
                         sx={{
                           border: "2px solid #ff6838",
-                          // borderRadius: 10,
+                          borderRadius: 10,
                           fontSize: 12,
                           p: 1,
                           fontWeight: "bold",
