@@ -70,7 +70,7 @@ export default function SignIn() {
     });
   };
 
-  // const handleMouseDownPassword = (event) => {
+  const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
 
