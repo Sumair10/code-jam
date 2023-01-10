@@ -80,7 +80,7 @@ export default function SignIn() {
       component="main1"
       // sx={{ backgroundColor: "#0f0f11", color: "white" }}
     >
-     <Grid
+     {/* <Grid */}
         item
         xs={false}
         sm={4}
