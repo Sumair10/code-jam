@@ -78,7 +78,7 @@ export default function SignIn() {
     <Grid
       container
       component="main1"
-      // sx={{ backgroundColor: "#0f0f11", color: "white" }}
+      sx={{ backgroundColor: "#0f0f11", color: "white" }}
     >
      <Grid
         item
