@@ -77,7 +77,7 @@ export default function SignIn() {
   return (
     <Grid
       // container
-      // component="main1"
+      component="main1"
       // sx={{ backgroundColor: "#0f0f11", color: "white" }}
     >
      {/* <Grid */}
